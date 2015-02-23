@@ -36,19 +36,48 @@ Generated permutations can be handled via a `org.nnsoft.trudeau.permutations.Per
 
 ```
 import static org.nnsoft.trudeau.permutations.Permutations.permute;
+import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 
 ...
 
 permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
 {
 
-    public void onPermutation( Collection<Integer> permutation )
+    public VisitState onPermutation( Collection<Integer> permutation )
     {
         System.out.println( permutation );
+        return CONTINUE;
     }
 
 } );
 ```
+
+The `org.nnsoft.trudeau.permutations.VisitState` status is used to abort/continue the flow of generating permutations; maybe users are looking for a specific configuration, when found the enumeration of the permutations can be blocked (just a silly example below):
+
+```
+import static org.nnsoft.trudeau.permutations.Permutations.permute;
+import static org.nnsoft.trudeau.permutations.VisitState.ABORT;
+import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
+
+...
+
+permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
+{
+
+    public VisitState onPermutation( Collection<Integer> permutation )
+    {
+        System.out.println( permutation );
+        if ( permutation.iterator().next() == 3 )
+        {
+            return VisitState.ABORT;
+        }
+        return VisitState.CONTINUE;
+    }
+
+} );
+```
+
+## Just get all Permutations
 
 If users needs to keep all generated permutations to a data structure, the `org.nnsoft.trudeau.permutations.Permutations#enumerateAllPermutations()` is a utility method that build a collection of permutations:
 

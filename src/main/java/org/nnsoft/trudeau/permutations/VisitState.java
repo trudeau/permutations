@@ -16,26 +16,20 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
-
-import java.util.Collection;
-import java.util.LinkedList;
-
-final class AccumulatorPermutationHandler<E>
-    implements PermutationHandler<E>
+/**
+ * Represents the states that the visit can assume.
+ */
+public enum VisitState
 {
 
-    private final Collection<Collection<E>> allPermutations = new LinkedList<Collection<E>>();
+    /**
+     * ABORT state
+     */
+    ABORT,
 
-    public VisitState onPermutation( Collection<E> permutation )
-    {
-        allPermutations.add( permutation );
-        return CONTINUE;
-    }
-
-    public Collection<Collection<E>> getAllPermutations()
-    {
-        return allPermutations;
-    }
+    /**
+     * CONTINUE state
+     */
+    CONTINUE;
 
 }

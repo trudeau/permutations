@@ -16,6 +16,8 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
+import static org.nnsoft.trudeau.permutations.VisitState.ABORT;
+import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 import static org.nnsoft.trudeau.utils.Assertions.checkNotNull;
 
 import java.util.ArrayList;
@@ -44,28 +46,31 @@ final class DefaultPermutationHandlerSelector<E>
      * Algorithm implementation inspired by Takanori Ishikawa's impl,
      * see https://gist.github.com/ishikawa/22266
      */
-    private void heapPermute( int n )
+    private VisitState heapPermute( int n )
     {
         if (n == 1)
         {
-            handler.onPermutation( new ArrayList<E>( elements ) );
+            return handler.onPermutation( new ArrayList<E>( elements ) );
         }
-        else
-        {
-            for ( int i = 0; i < n; i++ )
-            {
-                heapPermute( n - 1 );
 
-                if ( n % 2 == 1 ) // if n is odd
-                {
-                    swap( 0, n - 1 );
-                }
-                else // if n is even
-                {
-                    swap( i, n - 1 );
-                }
+        for ( int i = 0; i < n; i++ )
+        {
+            if (ABORT == heapPermute( n - 1 ) )
+            {
+                return ABORT;
+            }
+
+            if ( n % 2 == 1 ) // if n is odd
+            {
+                swap( 0, n - 1 );
+            }
+            else // if n is even
+            {
+                swap( i, n - 1 );
             }
         }
+
+        return CONTINUE;
     }
 
     private void swap( int i, int j )

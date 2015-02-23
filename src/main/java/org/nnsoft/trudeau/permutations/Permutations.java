@@ -111,4 +111,22 @@ public class Permutations
         return handler.getAllPermutations();
     }
 
+    public static void main( String[] args )
+    {
+        permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
+        {
+
+            public VisitState onPermutation( Collection<Integer> permutation )
+            {
+                System.out.println( permutation );
+                if ( permutation.iterator().next() == 3 )
+                {
+                    return VisitState.ABORT;
+                }
+                return VisitState.CONTINUE;
+            }
+
+        } );
+    }
+
 }

@@ -21,6 +21,6 @@ import java.util.Collection;
 public interface PermutationHandler<E>
 {
 
-    void onPermutation( Collection<E> permutation );
+    VisitState onPermutation( Collection<E> permutation );
 
 }
