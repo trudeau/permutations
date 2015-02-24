@@ -1,7 +1,7 @@
 /**
  * Permutations algorithm implementation.
  */
-package org.nnsoft.trudeau.permutations;
+package org.nnsoft.trudeau.math.permutations;
 
 /*
  *   Copyright 2015 The Trudeau Project

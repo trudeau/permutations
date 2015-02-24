@@ -1,4 +1,4 @@
-package org.nnsoft.trudeau.permutations;
+package org.nnsoft.trudeau.math.permutations;
 
 /*
  *   Copyright 2015 The Trudeau Project
@@ -16,8 +16,8 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-import static org.nnsoft.trudeau.permutations.VisitState.ABORT;
-import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
+import static org.nnsoft.trudeau.math.permutations.VisitState.ABORT;
+import static org.nnsoft.trudeau.math.permutations.VisitState.CONTINUE;
 import static org.nnsoft.trudeau.utils.Assertions.checkNotNull;
 
 final class DefaultPermutationHandlerSelector<E>

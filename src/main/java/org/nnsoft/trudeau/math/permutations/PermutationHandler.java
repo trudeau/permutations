@@ -1,4 +1,4 @@
-package org.nnsoft.trudeau.permutations;
+package org.nnsoft.trudeau.math.permutations;
 
 /*
  *   Copyright 2015 The Trudeau Project
@@ -16,20 +16,16 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-/**
- * Represents the states that the visit can assume.
- */
-public enum VisitState
+public interface PermutationHandler<E, O>
 {
 
-    /**
-     * ABORT state
-     */
-    ABORT,
+    VisitState onPermutation( E...permutation );
 
     /**
-     * CONTINUE state
+     * Invoked once the visit is terminated.
+     *
+     * @return Value that will be returned by the visit
      */
-    CONTINUE;
+    O onCompleted();
 
 }

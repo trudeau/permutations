@@ -24,7 +24,7 @@
     <version>1</version>
   </parent>
 
-  <artifactId>org.nnsoft.trudeau.permutations</artifactId>
+  <artifactId>org.nnsoft.trudeau.math.permutations</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <dependencies>

@@ -1,4 +1,4 @@
-package org.nnsoft.trudeau.permutations;
+package org.nnsoft.trudeau.math.permutations;
 
 /*
  *   Copyright 2015 The Trudeau Project
@@ -16,16 +16,9 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-public interface PermutationHandler<E, O>
+public interface PermutationHandlerSelector<E>
 {
 
-    VisitState onPermutation( E...permutation );
-
-    /**
-     * Invoked once the visit is terminated.
-     *
-     * @return Value that will be returned by the visit
-     */
-    O onCompleted();
+    <O> O andHandleWith( PermutationHandler<E, O> handler );
 
 }
