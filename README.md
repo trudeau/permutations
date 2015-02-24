@@ -69,9 +69,9 @@ permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
         System.out.println( permutation );
         if ( permutation.iterator().next() == 3 )
         {
-            return VisitState.ABORT;
+            return ABORT;
         }
-        return VisitState.CONTINUE;
+        return CONTINUE;
     }
 
 } );
