@@ -20,26 +20,23 @@ import static org.nnsoft.trudeau.permutations.VisitState.ABORT;
 import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 import static org.nnsoft.trudeau.utils.Assertions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 final class DefaultPermutationHandlerSelector<E>
     implements PermutationHandlerSelector<E>
 {
 
-    private final ArrayList<E> elements;
+    private final E[] elements;
 
     private PermutationHandler<E> handler;
 
-    DefaultPermutationHandlerSelector( Collection<E> elements )
+    DefaultPermutationHandlerSelector( E...elements )
     {
-        this.elements = new ArrayList<E>( elements );
+        this.elements = elements;
     }
 
     public void andHandleWith( PermutationHandler<E> handler )
     {
         this.handler = checkNotNull( handler, "A permutation handler must be specified in order to handle all permutations" );
-        heapPermute( elements.size() );
+        heapPermute( elements.length );
     }
 
     /*
@@ -50,7 +47,7 @@ final class DefaultPermutationHandlerSelector<E>
     {
         if (n == 1)
         {
-            return handler.onPermutation( new ArrayList<E>( elements ) );
+            return handler.onPermutation( elements.clone() );
         }
 
         for ( int i = 0; i < n; i++ )
@@ -75,9 +72,9 @@ final class DefaultPermutationHandlerSelector<E>
 
     private void swap( int i, int j )
     {
-        E swapElement = elements.get( i );
-        elements.set( i, elements.get( j ) );
-        elements.set( j, swapElement );
+        E swapElement = elements[i];
+        elements[i] = elements[j];
+        elements[j] = swapElement;
     }
 
 }

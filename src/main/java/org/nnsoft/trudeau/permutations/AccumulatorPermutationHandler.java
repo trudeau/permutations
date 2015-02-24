@@ -25,15 +25,15 @@ final class AccumulatorPermutationHandler<E>
     implements PermutationHandler<E>
 {
 
-    private final Collection<Collection<E>> allPermutations = new LinkedList<Collection<E>>();
+    private final Collection<E[]> allPermutations = new LinkedList<E[]>();
 
-    public VisitState onPermutation( Collection<E> permutation )
+    public VisitState onPermutation( E...permutation )
     {
         allPermutations.add( permutation );
         return CONTINUE;
     }
 
-    public Collection<Collection<E>> getAllPermutations()
+    public Iterable<E[]> getAllPermutations()
     {
         return allPermutations;
     }

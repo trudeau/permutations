@@ -17,7 +17,6 @@ package org.nnsoft.trudeau.permutations;
  */
 
 import static org.nnsoft.trudeau.utils.Assertions.checkNotNull;
-import static java.util.Arrays.asList;
 
 import java.util.Collection;
 
@@ -77,38 +76,41 @@ public class Permutations
         return factorial( n - 1 ) * n;
     }
 
-    /**
-     * 
-     *
-     * @param elements
-     * @return
-     */
-    public static <E> PermutationHandlerSelector<E> permute( E...elements )
-    {
-        elements = checkNotNull( elements, "Impossible to calculate all permutations for null elements array" );
-
-        return permute( asList( elements ) );
-    }
-
     public static <E> PermutationHandlerSelector<E> permute( Collection<E> elements )
     {
         elements = checkNotNull( elements, "Impossible to calculate all permutations for null elements collection" );
 
+        return permute( toArray( elements) );
+    }
+
+    public static <E> PermutationHandlerSelector<E> permute( E...elements )
+    {
+        elements = checkNotNull( elements, "Impossible to calculate all permutations for null elements array" );
+
         return new DefaultPermutationHandlerSelector<E>( elements );
     }
 
-    public static <E> Iterable<Collection<E>> enumerateAllPermutations( E...elements )
+    public static <E> Iterable<E[]> enumerateAllPermutations( Collection<E> elements )
+    {
+        elements = checkNotNull( elements, "Impossible to enumerate all permutations for null elements collection" );
+
+        return enumerateAllPermutations( toArray( elements) );
+    }
+
+    public static <E> Iterable<E[]> enumerateAllPermutations( E...elements )
     {
         elements = checkNotNull( elements, "Impossible to enumerate all permutations for null elements array" );
 
-        return enumerateAllPermutations( asList( elements ) );
-    }
-
-    public static <E> Collection<Collection<E>> enumerateAllPermutations( Collection<E> elements )
-    {
         AccumulatorPermutationHandler<E> handler = new AccumulatorPermutationHandler<E>();
         permute( elements ).andHandleWith( handler );
         return handler.getAllPermutations();
+    }
+
+    private static <E> E[] toArray( Collection<E> elements )
+    {
+        @SuppressWarnings( "unchecked" ) // type driven by collection type
+        E[] elementsArray = (E[]) elements.toArray();
+        return elementsArray;
     }
 
 }

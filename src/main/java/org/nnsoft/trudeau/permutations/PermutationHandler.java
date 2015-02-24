@@ -16,11 +16,9 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-import java.util.Collection;
-
 public interface PermutationHandler<E>
 {
 
-    VisitState onPermutation( Collection<E> permutation );
+    VisitState onPermutation( E...permutation );
 
 }
