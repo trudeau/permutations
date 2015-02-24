@@ -24,7 +24,11 @@ int numberOfPermutations = numberOfPermutations( 1, 2, 3 ); // that will return 
 
 The `org.nnsoft.trudeau.permutations.Permutations#permute()` methods allow generating all the permutations given an array or collection of elements.
 The implementation is based on the [Heap's algorithm](http://en.wikipedia.org/wiki/Heap%27s_algorithm) which is an optimized recursive algorithm to generate permutations.
-Generated permutations can be handled via a `org.nnsoft.trudeau.permutations.PermutationHandler` like in the sample below:
+Generated permutations can be handled via a `org.nnsoft.trudeau.permutations.PermutationHandler` like in the sample below, where:
+
+ * `onPermutation( E...permutation )` method is invoked every time a new permutation is generated;
+
+ * `onCompleted()` method is invoked once the permutations generation is complete and returns the result of the handle.
 
 ```
 import static org.nnsoft.trudeau.permutations.Permutations.permute;
@@ -58,30 +62,31 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 
 ...
 
-permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer, Boolean>()
-{
+boolean configurationFound = permute( 1, 2, 3 )
+                            .andHandleWith( new PermutationHandler<Integer, Boolean>()
+                                            {
 
-    private boolean found = false;
+                                                private boolean found = false;
 
-    public VisitState onPermutation( Integer...permutation )
-    {
-        System.out.println( Arrays.toString( permutation ) );
+                                                public VisitState onPermutation( Integer...permutation )
+                                                {
+                                                    System.out.println( Arrays.toString( permutation ) );
 
-        if ( permutation[0] == 3 )
-        {
-            found = true;
-            return ABORT;
-        }
+                                                    if ( permutation[0] == 3 )
+                                                    {
+                                                        found = true;
+                                                        return ABORT;
+                                                    }
 
-        return CONTINUE;
-    }
+                                                    return CONTINUE;
+                                                }
 
-    public Boolean onCompleted()
-    {
-        return true;
-    }
+                                                public Boolean onCompleted()
+                                                {
+                                                    return true;
+                                                }
 
-} );
+                                            } );
 ```
 
 ## Just get all Permutations
