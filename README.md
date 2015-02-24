@@ -1,13 +1,13 @@
 permutations
 =============
 
-Elements collection permutations implementation
+Elements permutations implementation
 
 # Usage
 
 This is a small set of fluent APIs to generate permutations of an arbitrary elements collection.
 
-## Calculate the number of permutations of an elements set
+## Calculate the number of permutations of elements
 
 The `org.nnsoft.trudeau.permutations.Permutations` contains a couple of methods to calculate the number of permutations that can be generated starting from an array or collection of elements.
 
