@@ -99,8 +99,6 @@ public class Permutations
 
     public static <E> Collection<E[]> enumerateAllPermutations( E...elements )
     {
-        elements = checkNotNull( elements, "Impossible to enumerate all permutations for null elements array" );
-
         return permute( elements ).andHandleWith( new AccumulatorPermutationHandler<E>() );
     }
 
