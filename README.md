@@ -103,4 +103,4 @@ Collection<Integer[]> allPermutations = enumerateAllPermutations( 1, 2, 3 );
 
 # Note
 
-Please pay attention on the fact that the method above is overloaded in order to accept both arrays and collections.
+Please pay attention on the fact that the methods above are overloaded in order to accept both arrays and collections.
