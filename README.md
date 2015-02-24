@@ -64,29 +64,29 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 
 boolean configurationFound = permute( 1, 2, 3 )
                             .andHandleWith( new PermutationHandler<Integer, Boolean>()
-                                            {
+                            {
 
-                                                private boolean found = false;
+                                private boolean found = false;
 
-                                                public VisitState onPermutation( Integer...permutation )
-                                                {
-                                                    System.out.println( Arrays.toString( permutation ) );
+                                public VisitState onPermutation( Integer...permutation )
+                                {
+                                    System.out.println( Arrays.toString( permutation ) );
 
-                                                    if ( permutation[0] == 3 )
-                                                    {
-                                                        found = true;
-                                                        return ABORT;
-                                                    }
+                                    if ( permutation[0] == 3 )
+                                    {
+                                        found = true;
+                                        return ABORT;
+                                    }
 
-                                                    return CONTINUE;
-                                                }
+                                    return CONTINUE;
+                                }
 
-                                                public Boolean onCompleted()
-                                                {
-                                                    return true;
-                                                }
+                                public Boolean onCompleted()
+                                {
+                                    return true;
+                                }
 
-                                            } );
+                            } );
 ```
 
 ## Just get all Permutations
