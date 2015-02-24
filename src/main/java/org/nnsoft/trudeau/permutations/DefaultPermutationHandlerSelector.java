@@ -26,17 +26,18 @@ final class DefaultPermutationHandlerSelector<E>
 
     private final E[] elements;
 
-    private PermutationHandler<E> handler;
+    private PermutationHandler<E, ?> handler;
 
     DefaultPermutationHandlerSelector( E...elements )
     {
         this.elements = elements;
     }
 
-    public void andHandleWith( PermutationHandler<E> handler )
+    public <O> O andHandleWith( PermutationHandler<E, O> handler )
     {
         this.handler = checkNotNull( handler, "A permutation handler must be specified in order to handle all permutations" );
         heapPermute( elements.length );
+        return handler.onCompleted();
     }
 
     /*

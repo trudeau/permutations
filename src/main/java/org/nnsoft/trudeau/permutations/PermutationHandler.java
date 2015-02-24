@@ -16,9 +16,16 @@ package org.nnsoft.trudeau.permutations;
  *   limitations under the License.
  */
 
-public interface PermutationHandler<E>
+public interface PermutationHandler<E, O>
 {
 
     VisitState onPermutation( E...permutation );
+
+    /**
+     * Invoked once the visit is terminated.
+     *
+     * @return Value that will be returned by the visit
+     */
+    O onCompleted();
 
 }

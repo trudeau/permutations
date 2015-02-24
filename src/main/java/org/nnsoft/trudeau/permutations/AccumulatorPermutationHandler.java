@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 final class AccumulatorPermutationHandler<E>
-    implements PermutationHandler<E>
+    implements PermutationHandler<E, Collection<E[]>>
 {
 
     private final Collection<E[]> allPermutations = new LinkedList<E[]>();
@@ -33,7 +33,7 @@ final class AccumulatorPermutationHandler<E>
         return CONTINUE;
     }
 
-    public Iterable<E[]> getAllPermutations()
+    public Collection<E[]> onCompleted()
     {
         return allPermutations;
     }

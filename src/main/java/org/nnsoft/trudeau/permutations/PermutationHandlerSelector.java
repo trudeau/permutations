@@ -19,6 +19,6 @@ package org.nnsoft.trudeau.permutations;
 public interface PermutationHandlerSelector<E>
 {
 
-    void andHandleWith( PermutationHandler<E> handler );
+    <O> O andHandleWith( PermutationHandler<E, O> handler );
 
 }

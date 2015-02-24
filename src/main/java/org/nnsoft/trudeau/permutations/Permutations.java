@@ -97,13 +97,11 @@ public class Permutations
         return enumerateAllPermutations( toArray( elements) );
     }
 
-    public static <E> Iterable<E[]> enumerateAllPermutations( E...elements )
+    public static <E> Collection<E[]> enumerateAllPermutations( E...elements )
     {
         elements = checkNotNull( elements, "Impossible to enumerate all permutations for null elements array" );
 
-        AccumulatorPermutationHandler<E> handler = new AccumulatorPermutationHandler<E>();
-        permute( elements ).andHandleWith( handler );
-        return handler.getAllPermutations();
+        return permute( elements ).andHandleWith( new AccumulatorPermutationHandler<E>() );
     }
 
     private static <E> E[] toArray( Collection<E> elements )

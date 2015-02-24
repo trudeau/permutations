@@ -32,13 +32,18 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 
 ...
 
-permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
+permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer, Void>()
 {
 
     public VisitState onPermutation( Integer...permutation )
     {
         System.out.println( Arrays.toString( permutation ) );
         return CONTINUE;
+    }
+
+    public Void onCompleted()
+    {
+        return null;
     }
 
 } );
@@ -53,8 +58,10 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 
 ...
 
-permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
+permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer, Boolean>()
 {
+
+    private boolean found = false;
 
     public VisitState onPermutation( Integer...permutation )
     {
@@ -62,10 +69,16 @@ permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
 
         if ( permutation[0] == 3 )
         {
+            found = true;
             return ABORT;
         }
 
         return CONTINUE;
+    }
+
+    public Boolean onCompleted()
+    {
+        return true;
     }
 
 } );
@@ -80,7 +93,7 @@ import static org.nnsoft.trudeau.permutations.Permutations.enumerateAllPermutati
 
 ...
 
-Iterable<Integer[]> allPermutations = enumerateAllPermutations( 1, 2, 3 );
+Collection<Integer[]> allPermutations = enumerateAllPermutations( 1, 2, 3 );
 ```
 
 # Note
