@@ -18,14 +18,6 @@ import static org.nnsoft.trudeau.permutations.Permutations.numberOfPermutations;
 
 // it can be applied to an array of int, for example
 int numberOfPermutations = numberOfPermutations( 1, 2, 3 ); // that will return 6, which is 3!
-
-// or it can be applied to a collection of String, for example
-Collection<String> stringCollection = new ArrayList<String>();
-stringCollection.add( "a" );
-stringCollection.add( "b" );
-stringCollection.add( "c" );
-stringCollection.add( "d" );
-numberOfPermutations = numberOfPermutations( stringCollection ); // that will return 24, which is 4!
 ```
 
 ## Handling Permutations
@@ -43,9 +35,9 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
 {
 
-    public VisitState onPermutation( Collection<Integer> permutation )
+    public VisitState onPermutation( Integer...permutation )
     {
-        System.out.println( permutation );
+        System.out.println( Arrays.toString( permutation ) );
         return CONTINUE;
     }
 
@@ -64,13 +56,15 @@ import static org.nnsoft.trudeau.permutations.VisitState.CONTINUE;
 permute( 1, 2, 3 ).andHandleWith( new PermutationHandler<Integer>()
 {
 
-    public VisitState onPermutation( Collection<Integer> permutation )
+    public VisitState onPermutation( Integer...permutation )
     {
-        System.out.println( permutation );
-        if ( permutation.iterator().next() == 3 )
+        System.out.println( Arrays.toString( permutation ) );
+
+        if ( permutation[0] == 3 )
         {
             return ABORT;
         }
+
         return CONTINUE;
     }
 
@@ -86,7 +80,7 @@ import static org.nnsoft.trudeau.permutations.Permutations.enumerateAllPermutati
 
 ...
 
-Collection<Collection<Integer>> allPermutations = enumerateAllPermutations( 1, 2, 3 );
+Iterable<Integer[]> allPermutations = enumerateAllPermutations( 1, 2, 3 );
 ```
 
 # Note
