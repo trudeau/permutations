@@ -25,13 +25,13 @@
   </parent>
 
   <artifactId>org.nnsoft.trudeau.math.permutations</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 
   <scm>
     <url>http://github.com/trudeau/permutations</url>
     <connection>scm:git:ssh://github.com/trudeau/permutations.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/trudeau/permutations.git</developerConnection>
-    <tag>org.nnsoft.trudeau.math.permutations-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
