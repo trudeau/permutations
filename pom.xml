@@ -27,6 +27,21 @@
   <artifactId>org.nnsoft.trudeau.math.permutations</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+  <scm>
+    <url>http://github.com/trudeau/permutations</url>
+    <connection>scm:git:ssh://github.com/trudeau/permutations.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/trudeau/permutations.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <system>GitHub Issue Management</system>
+    <url>https://github.com/trudeau/permutations/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Trevis CI</system>
+    <url>https://travis-ci.org/trudeau/permutations/</url>
+  </ciManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.99soft.trudeau</groupId>
